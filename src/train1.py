@@ -141,7 +141,7 @@ def train1(args, device, gen, dis, transform):
                 'Generator': gen_loss_ave,
                 'Discriminator': dis_loss_ave,
             },
-            global_loop
+            global_loop * args.train1_local_loops
         )
         ##################################
         writer.add_scalars('Training/2:Loss(Generator)',
@@ -150,7 +150,7 @@ def train1(args, device, gen, dis, transform):
                 'Adversarial': gen_adv_loss_ave,
                 'Identity': gen_id_loss_ave,
             },
-            global_loop
+            global_loop * args.train1_local_loops
         )
         ##################################
         writer.add_scalars('Training/3:Loss(Discriminator)',
@@ -159,7 +159,7 @@ def train1(args, device, gen, dis, transform):
                 'Real': dis_real_loss_ave,
                 'Fake': dis_fake_loss_ave,
             },
-            global_loop
+            global_loop * args.train1_local_loops
         )
 
         # ---------------------------------

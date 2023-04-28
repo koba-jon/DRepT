@@ -101,8 +101,8 @@ if __name__ == '__main__':
         
     if args.test:
         seg = UNet(args, gen=False).to(device)
-        set_options(parser, mode="test")
-        save_model_params([seg], ['seg'], mode="test")
+        set_options(parser, mode=args.test_label)
+        save_model_params([seg], ['seg'], mode=args.test_label)
         test(args, device, seg, transform, transformGT)
         
     if args.transfer:

@@ -17,7 +17,7 @@ def train3(args, device, f_ano, seg, transform):
     # ---------------------------------
 
     # get training dataset
-    dataloader = ImageFolderGMMWithPathsLoader(f'datasets/{args.dataset}/{args.train3_dir}', f'checkpoints/{args.dataset}/{args.train2_label}/models_for_target', batch_size=args.train3_batch_size, transform=transform)
+    dataloader = ImageFolderGMMWithPathsLoader(f'datasets/{args.dataset}/{args.train3_dir}', f'checkpoints/{args.dataset}/{args.train2_label}/models_as_source', batch_size=args.train3_batch_size, transform=transform)
     print(f'total images : Normal:{dataloader.datanumN}, GMM:{dataloader.datanumGMM}\n')
     
     # set optimizer method
@@ -118,11 +118,11 @@ def train3(args, device, f_ano, seg, transform):
         print(f'iterations: {iterations_start}-{iterations_end}/{iterations_total},  loss: {seg_loss_ave:.5f}')
 
         # training tensorboard
-        writer.add_scalars('Training',
+        writer.add_scalars('Training/Loss',
             {
                 'Loss': seg_loss_ave,
             },
-            global_loop
+            global_loop * args.train3_local_loops
         )
         
         # ---------------------------------

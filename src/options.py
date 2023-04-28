@@ -26,7 +26,7 @@ def options():
     parser.add_argument('--train2', action='store_true', help='training mode 2 on/off')
     parser.add_argument('--train2_dir', type=str, default='trainA', help='training source-anomaly image directory : ./datasets/<dataset>/<train2_dir>/<image files>')
     parser.add_argument('--train2_iters', type=int, default=10000, help='training total iterations for each phase')
-    parser.add_argument('--train2_label', type=str, default="stage2", help='stage label')
+    parser.add_argument('--train2_label', type=str, default="stage2", help='stage label for training stage 2')
 
     # (2.3) Define for training - stage 3
     parser.add_argument('--train3', action='store_true', help='training mode 3 on/off')
@@ -34,7 +34,7 @@ def options():
     parser.add_argument('--train3_global_loops', type=int, default=100, help='the number of global loop for training stage 3 : iterations = <train3_global_loops> * <train3_local_loops>')
     parser.add_argument('--train3_local_loops', type=int, default=100, help='the number of local loop for training stage 3 : iterations = <train3_global_loops> * <train3_local_loops>')
     parser.add_argument('--train3_batch_size', type=int, default=32, help='training batch size')
-    parser.add_argument('--train3_label', type=str, default="stage3", help='stage label')
+    parser.add_argument('--train3_label', type=str, default="stage3", help='stage label for training stage 3')
 
     # (3) Define for test
     parser.add_argument('--test', action='store_true', help='test mode on/off')
@@ -42,6 +42,7 @@ def options():
     parser.add_argument('--test_A_dir', type=str, default='testA', help='test anomaly image directory : ./datasets/<dataset>/<test_A_dir>/<image files>')
     parser.add_argument('--test_GT_dir', type=str, default='testGT', help='test GT image directory : ./datasets/<dataset>/<test_GT_dir>/<image files>')
     parser.add_argument('--test_result_dir', type=str, default='test_result', help='test result directory : ./<test_result_dir>')
+    parser.add_argument('--test_label', type=str, default="test", help='stage label for test')
 
     # (4) Define for transfer
     parser.add_argument('--transfer', action='store_true', help='test mode on/off')
