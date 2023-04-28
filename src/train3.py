@@ -122,7 +122,7 @@ def train3(args, device, f_ano, seg, transform):
             {
                 'Loss': seg_loss_ave,
             },
-            global_loop * args.train3_local_loops
+            iterations_end
         )
         
         # ---------------------------------
