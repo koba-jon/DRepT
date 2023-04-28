@@ -1,0 +1,9 @@
+torch
+torchvision
+numpy
+pillow
+tqdm
+tb-nightly
+future
+natsort
+opencv-python
