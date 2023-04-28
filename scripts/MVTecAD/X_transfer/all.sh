@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SCRIPT_DIR=$(cd $(dirname $0); pwd)
 
 sh ${SCRIPT_DIR}/11.sh

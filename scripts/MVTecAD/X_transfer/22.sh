@@ -1,3 +1,5 @@
+#!/bin/bash
+
 IMAGE_PATH='datasets/MVTecAD/leather/train/000.png'
 GMM_PATH='checkpoints/MVTecAD/carpet/stage2/models/carpet_testA_color_000.pth'
 RESULT_PATH="transfer_result/2/2/"
