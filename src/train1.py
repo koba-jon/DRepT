@@ -177,6 +177,7 @@ def train1(args, device, gen, dis, transform):
     
     writer.close()
     
-    print(f'Stage1 finished!')
+    print(f'\nStage1 finished!')
+    print(f'------------------------------------------------------------------------------------------\n')
 
 

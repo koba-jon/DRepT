@@ -94,6 +94,7 @@ def train2(args, device, gen, f_ano, transform):
         imageGMM.save(f'checkpoints/{args.dataset}/{args.train2_label}/samples/{base_path}_GMM{ext}')
 
 
-    print(f'Stage2 finished!')
+    print(f'\nStage2 finished!')
+    print(f'------------------------------------------------------------------------------------------\n')
 
 

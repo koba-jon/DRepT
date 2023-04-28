@@ -139,7 +139,8 @@ def train3(args, device, f_ano, seg, transform):
     
     writer.close()
 
-    print(f'Stage3 finished!')
+    print(f'\nStage3 finished!')
+    print(f'------------------------------------------------------------------------------------------\n')
 
 
 

@@ -32,5 +32,6 @@ def transfer(args, device, f_ano, transform):
         value_range=(-1, 1),
     )
 
-    print(f'Transfer finished!')
+    print(f'\nTransfer finished!')
+    print(f'------------------------------------------------------------------------------------------\n')
 
