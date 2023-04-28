@@ -17,15 +17,15 @@ def test(args, device, seg, transform, transformGT):
     os.makedirs(args.test_result_dir, exist_ok=True)
 
     print('\n-----------------------------------------------------')
-    print('(1/4) test for anomaly images')
+    print('(1/4) test for normal images')
     print('-----------------------------------------------------')
-    testA(args, device, seg, transform, transformGT)
+    testN(args, device, seg, transform)
     print('-----------------------------------------------------')
 
     print('\n-----------------------------------------------------')
-    print('(2/4) test for normal images')
+    print('(2/4) test for anomaly images')
     print('-----------------------------------------------------')
-    testN(args, device, seg, transform)
+    testA(args, device, seg, transform, transformGT)
     print('-----------------------------------------------------')
 
     print('\n-----------------------------------------------------')
@@ -42,86 +42,6 @@ def test(args, device, seg, transform, transformGT):
 
     print(f'\nTest finished!')
     print(f'------------------------------------------------------------------------------------------\n')
-
-    return
-
-
-
-def testA(args, device, seg, transform, transformGT):
-
-    # get dataset
-    dataset = ImageFolderGTWithPaths(f'datasets/{args.dataset}/{args.test_A_dir}', f'datasets/{args.dataset}/{args.test_GT_dir}', transform=transform, transformGT=transformGT)
-    dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=4)
-    print('total anomaly images :',len(dataloader.dataset))
-
-    # get weights
-    seg.load_state_dict(torch.load(f'checkpoints/{args.dataset}/{args.train3_label}/models/seg.pth', map_location=device))
-
-    # evaluation mode
-    seg.eval()
-
-    test_result_in_dir = args.test_result_dir + '/anomalyI'
-    test_result_out_dir = args.test_result_dir + '/anomalyO'
-    test_result_heat_dir = args.test_result_dir + '/anomalyH'
-    test_result_blend_dir = args.test_result_dir + '/anomalyB'
-    test_result_score_dir = args.test_result_dir + '/anomaly_score'
-    os.makedirs(test_result_in_dir, exist_ok=True)
-    os.makedirs(test_result_out_dir, exist_ok=True)
-    os.makedirs(test_result_heat_dir, exist_ok=True)
-    os.makedirs(test_result_blend_dir, exist_ok=True)
-    os.makedirs(test_result_score_dir, exist_ok=True)
-    f = open(f'{test_result_score_dir}/anomaly_image.txt', mode='w')
-    f1 = open(f'{test_result_score_dir}/anomaly_pixel.txt', mode='w')
-    f2 = open(f'{test_result_score_dir}/normal_pixel.txt', mode='w')
-
-    for i, (image, GT, path) in enumerate(dataloader):
-
-        image = image.to(device)
-        anomaly_mask = (GT.to(device) > 0.5)
-        normal_mask = anomaly_mask.bitwise_not()
-
-        # calculate loss
-        anomaly_map = seg(image)
-        anomaly_map = torch.sigmoid(anomaly_map)
-        anomaly_score = torch.max(anomaly_map)
-
-        print(f'<{path[0]}> anomaly_score:{anomaly_score.item():.5f}')
-        f.write(f'{anomaly_score.item()}\n')
-
-        for x in anomaly_map.masked_select(anomaly_mask).flatten():
-            f1.write(f'{x.item()}\n')
-        for x in anomaly_map.masked_select(normal_mask).flatten():
-            f2.write(f'{x.item()}\n')
-
-        utils.save_image(
-            image,
-            f'{test_result_in_dir}/{path[0]}',
-            nrow=1,
-            normalize=True,
-            value_range=(-1, 1),
-        )
-
-        utils.save_image(
-            anomaly_map,
-            f'{test_result_out_dir}/{path[0]}',
-            nrow=1,
-            normalize=True,
-            value_range=(0, 1),
-        )
-
-        anomaly_map = anomaly_map[0].permute(1, 2, 0).contiguous().to('cpu').detach().numpy().copy() * 255.0
-        anomaly_map = np.uint8(anomaly_map)
-        heatmap = cv2.applyColorMap(anomaly_map, cv2.COLORMAP_JET)
-        cv2.imwrite(f'{test_result_heat_dir}/{path[0]}', heatmap)
-
-        image = (image[0].expand(3, args.size, args.size).permute(1, 2, 0).contiguous().to('cpu').detach().numpy().copy() * 0.5 + 0.5) * 255.0
-        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
-        blend_image = np.uint8(alpha * image + (1.0 - alpha) * heatmap)
-        cv2.imwrite(f'{test_result_blend_dir}/{path[0]}', blend_image)
-
-    f.close()
-    f1.close()
-    f2.close()
 
     return
 
@@ -189,6 +109,85 @@ def testN(args, device, seg, transform):
         cv2.imwrite(f'{test_result_blend_dir}/{path[0]}', blend_image)
 
     f.close()
+
+    return
+
+
+def testA(args, device, seg, transform, transformGT):
+
+    # get dataset
+    dataset = ImageFolderGTWithPaths(f'datasets/{args.dataset}/{args.test_A_dir}', f'datasets/{args.dataset}/{args.test_GT_dir}', transform=transform, transformGT=transformGT)
+    dataloader = DataLoader(dataset, batch_size=1, shuffle=False, num_workers=4)
+    print('total anomaly images :',len(dataloader.dataset))
+
+    # get weights
+    seg.load_state_dict(torch.load(f'checkpoints/{args.dataset}/{args.train3_label}/models/seg.pth', map_location=device))
+
+    # evaluation mode
+    seg.eval()
+
+    test_result_in_dir = args.test_result_dir + '/anomalyI'
+    test_result_out_dir = args.test_result_dir + '/anomalyO'
+    test_result_heat_dir = args.test_result_dir + '/anomalyH'
+    test_result_blend_dir = args.test_result_dir + '/anomalyB'
+    test_result_score_dir = args.test_result_dir + '/anomaly_score'
+    os.makedirs(test_result_in_dir, exist_ok=True)
+    os.makedirs(test_result_out_dir, exist_ok=True)
+    os.makedirs(test_result_heat_dir, exist_ok=True)
+    os.makedirs(test_result_blend_dir, exist_ok=True)
+    os.makedirs(test_result_score_dir, exist_ok=True)
+    f = open(f'{test_result_score_dir}/anomaly_image.txt', mode='w')
+    f1 = open(f'{test_result_score_dir}/normal_pixel.txt', mode='w')
+    f2 = open(f'{test_result_score_dir}/anomaly_pixel.txt', mode='w')
+
+    for i, (image, GT, path) in enumerate(dataloader):
+
+        image = image.to(device)
+        anomaly_mask = (GT.to(device) > 0.5)
+        normal_mask = anomaly_mask.bitwise_not()
+
+        # calculate loss
+        anomaly_map = seg(image)
+        anomaly_map = torch.sigmoid(anomaly_map)
+        anomaly_score = torch.max(anomaly_map)
+
+        print(f'<{path[0]}> anomaly_score:{anomaly_score.item():.5f}')
+        f.write(f'{anomaly_score.item()}\n')
+
+        for x in anomaly_map.masked_select(normal_mask).flatten():
+            f1.write(f'{x.item()}\n')
+        for x in anomaly_map.masked_select(anomaly_mask).flatten():
+            f2.write(f'{x.item()}\n')
+
+        utils.save_image(
+            image,
+            f'{test_result_in_dir}/{path[0]}',
+            nrow=1,
+            normalize=True,
+            value_range=(-1, 1),
+        )
+
+        utils.save_image(
+            anomaly_map,
+            f'{test_result_out_dir}/{path[0]}',
+            nrow=1,
+            normalize=True,
+            value_range=(0, 1),
+        )
+
+        anomaly_map = anomaly_map[0].permute(1, 2, 0).contiguous().to('cpu').detach().numpy().copy() * 255.0
+        anomaly_map = np.uint8(anomaly_map)
+        heatmap = cv2.applyColorMap(anomaly_map, cv2.COLORMAP_JET)
+        cv2.imwrite(f'{test_result_heat_dir}/{path[0]}', heatmap)
+
+        image = (image[0].expand(3, args.size, args.size).permute(1, 2, 0).contiguous().to('cpu').detach().numpy().copy() * 0.5 + 0.5) * 255.0
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+        blend_image = np.uint8(alpha * image + (1.0 - alpha) * heatmap)
+        cv2.imwrite(f'{test_result_blend_dir}/{path[0]}', blend_image)
+
+    f.close()
+    f1.close()
+    f2.close()
 
     return
 
