@@ -287,3 +287,5 @@ def AUROC(args, flag, anomaly_path, normal_path):
     f2.write(f'{AUC:.3f}  {AUC:.16f}')
     f2.close()
 
+    print(f"{flag}-AUROC: {AUC:.3f} ({AUC})")
+
