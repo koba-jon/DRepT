@@ -31,7 +31,7 @@ $ cd DRepT
 
 ### (3) Set dataset
 
-Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad): <br>
+Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad)[1]: <br>
 ```
 $ ln -s <mvtec_anomaly_detection_dataset_path> ./datasets/mvtec_anomaly_detection
 $ bash datasets/MVTecAD_convert.sh
@@ -41,7 +41,7 @@ $ bash datasets/MVTecAD_convert.sh
 
 ## 3. Usage
 
-Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad) (Source: Carpet / Tile / Wood , Target: Leather): <br>
+Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad)[1] (Source: Carpet / Tile / Wood , Target: Leather): <br>
 
 ![experiments-flow](scripts/experiment.png)
 
@@ -100,3 +100,4 @@ If you use this code for your research, please cite the following paper:
 ```
 
 ## 5. Reference
+[1] P. Bergmann, K. Batzner, M. Fauser, D. Sattlegger, and C. Steger, "The MVTec Anomaly Detection Dataset: A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection", International Journal of Computer Vision, Vol.129, issue 4, pp.1038-1059, 2021.
