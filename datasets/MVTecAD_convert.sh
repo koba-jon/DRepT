@@ -1,8 +1,8 @@
 #!/bin/bash
 
-SHELL_PATH=`pwd -P`
-dirI_top="${SHELL_PATH}/mvtec_anomaly_detection"
-dirO_top="${SHELL_PATH}/MVTecAD"
+SCRIPT_DIR=$(cd $(dirname $0); pwd)
+dirI_top="${SCRIPT_DIR}/mvtec_anomaly_detection"
+dirO_top="${SCRIPT_DIR}/MVTecAD"
 dirO_train="train"
 dirO_train_anomaly="trainA"
 dirO_train_normal="trainN"
