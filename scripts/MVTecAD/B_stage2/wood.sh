@@ -4,6 +4,7 @@ DATASET='MVTecAD/wood'
 SIZE=128
 CHANNEL=3
 GPU_ID=0
+ITERATION=10000
 
 python3 src/main.py \
     --train2 \
@@ -11,5 +12,5 @@ python3 src/main.py \
     --size ${SIZE} \
     --nc ${CHANNEL} \
     --gpu_id ${GPU_ID} \
-    --train2_iters 10000
+    --train2_iters ${ITERATION}
 
