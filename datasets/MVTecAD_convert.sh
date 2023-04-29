@@ -1,3 +1,5 @@
+#!/bin/bash
+
 SHELL_PATH=`pwd -P`
 dirI_top="${SHELL_PATH}/mvtec_anomaly_detection"
 dirO_top="${SHELL_PATH}/MVTecAD"
