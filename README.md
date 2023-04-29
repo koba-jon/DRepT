@@ -31,7 +31,7 @@ $ cd DRepT
 
 ### (3) Set dataset
 
-Example of MVTecAD: <br>
+Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad): <br>
 ```
 $ ln -s <mvtec_anomaly_detection_dataset_path> ./datasets/mvtec_anomaly_detection
 $ bash datasets/MVTecAD_convert.sh
@@ -41,7 +41,7 @@ $ bash datasets/MVTecAD_convert.sh
 
 ## 3. Usage
 
-Example of MVTecAD (Source: Carpet / Tile / Wood , Target: Leather): <br>
+Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad) (Source: Carpet / Tile / Wood , Target: Leather): <br>
 
 ![experiments-flow](scripts/experiment.png)
 
@@ -98,3 +98,5 @@ If you use this code for your research, please cite the following paper:
   year={2023},
 }
 ```
+
+## 5. Reference
