@@ -1,6 +1,6 @@
 # DRepT — Official PyTorch Implementation
 
-This is the official implementation of the paper **"DRepT: Anomaly Detection Based on Transfer of Defect Representation with Transmittance Mask"** in *2023 International Joint Conference on Neural Networks (IJCNN)*.
+This is the official implementation of the paper **"DRepT: Anomaly Detection Based on Transfer of Defect Representation with Transmittance Mask"** [1] in *2023 International Joint Conference on Neural Networks (IJCNN)*.
 
 ![transfer-result](scripts/transfer.png)
 
@@ -33,7 +33,7 @@ $ cd DRepT
 
 ### (3) Set dataset
 
-Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad)[1]: <br>
+Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad)[2]: <br>
 ```
 $ ln -s <mvtec_anomaly_detection_dataset_path> ./datasets/mvtec_anomaly_detection
 $ bash datasets/MVTecAD_convert.sh
@@ -43,7 +43,7 @@ $ bash datasets/MVTecAD_convert.sh
 
 ## 3. Usage
 
-Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad)[1] (Source: Carpet / Tile / Wood , Target: Leather): <br>
+Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad)[2] (Source: Carpet / Tile / Wood , Target: Leather): <br>
 
 ![experiments-flow](scripts/experiment.png)
 
@@ -102,4 +102,5 @@ If you use this code for your research, please cite the following paper:
 ```
 
 ## 5. Reference
-[1] P. Bergmann, K. Batzner, M. Fauser, D. Sattlegger, and C. Steger, "The MVTec Anomaly Detection Dataset: A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection", International Journal of Computer Vision, Vol.129, issue 4, pp.1038-1059, 2021.
+[1] H. Kobayashi and M. Hashimoto, "DRepT: Anomaly Detection Based on Transfer of Defect Representation with Transmittance Mask", 2023 International Joint Conference on Neural Networks (IJCNN), 2023. 
+[2] P. Bergmann, K. Batzner, M. Fauser, D. Sattlegger, and C. Steger, "The MVTec Anomaly Detection Dataset: A Comprehensive Real-World Dataset for Unsupervised Anomaly Detection", International Journal of Computer Vision, Vol.129, issue 4, pp.1038-1059, 2021.
