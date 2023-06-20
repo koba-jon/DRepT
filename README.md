@@ -11,6 +11,8 @@ The purpose is to improve the accuracy of anomaly detection for the target domai
 DRepT uses an anomaly image in the source domain and transfers its defect representation to a normal image in the target domain.<br>
 As a result, an anomaly image for the target domain is generated with high quality, and these anomaly images can be used for training the anomaly detection model.
 
+![method](scripts/method.png)
+
 ### (2) Data available for training
 Source domain: Normal images and Anomaly images (without Ground Truth) <br>
 Target domain: Normal images only <br>
