@@ -2,7 +2,7 @@
 
 This is the official implementation of the paper **"DRepT: Anomaly Detection Based on Transfer of Defect Representation with Transmittance Mask"** in *2023 International Joint Conference on Neural Networks (IJCNN)* [1].
 
-![transfer-result](scripts/transfer.png)
+![transfer-result](images/transfer.png)
 
 ## 1. Overview
 
@@ -11,7 +11,7 @@ The purpose is to improve the accuracy of anomaly detection for the target domai
 DRepT uses an anomaly image in the source domain and transfers its defect representation to a normal image in the target domain.<br>
 As a result, an anomaly image for the target domain is generated with high quality, and these anomaly images can be used for training the anomaly detection model.
 
-![method](scripts/method.png)
+![method](images/method.png)
 
 ### (2) Data available for training
 Source domain: Normal images and Anomaly images (without Ground Truth) <br>
@@ -45,7 +45,7 @@ $ bash datasets/MVTecAD_convert.sh
 
 Example of [MVTecAD](https://www.mvtec.com/company/research/datasets/mvtec-ad)[2] (Source: Carpet / Tile / Wood , Target: Leather): <br>
 
-![experiments-flow](scripts/experiment.png)
+![experiments-flow](images/experiment.png)
 
 ### (A) Train and save the stage 1 networks
 
