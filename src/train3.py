@@ -165,6 +165,7 @@ def augmentation(gmm_params, mini_batch_size, device):
     return gmm_params
 
 
+# Reference: https://qiita.com/0sb1/items/20819a90872275811439
 def change_hue(color, value_range=(0.0, 1.0), eps=1e-9):
 
     color = (color - value_range[0]) / (value_range[1] - value_range[0])
