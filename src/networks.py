@@ -4,6 +4,7 @@ from torch import nn
 
 
 # U-Net model
+# Reference: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/models/networks.py
 class UNet(nn.Module):
 
     def __init__(self, args, gen=True):
@@ -36,6 +37,7 @@ class UNet(nn.Module):
 
 
 # U-Net skip connection block
+# Reference: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/models/networks.py
 class UNetBlock(nn.Module):
 
     def __init__(self, outside_nc, inside_nc, submodule=None, outermost=False, innermost=False, inner=False):
@@ -72,6 +74,7 @@ class UNetBlock(nn.Module):
 
 
 # PatchGAN Discriminator network model
+# Reference: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix/blob/master/models/networks.py
 # A : making the final output a feature map with a certain size and making a true or false decision at each pixel
 # B : making the input image a patch and making a true or false decision at the output of each patch
 # This is A type. (A is equivalent to B)
