@@ -55,6 +55,8 @@ $ bash scripts/MVTecAD/A_stage1/tile.sh
 $ bash scripts/MVTecAD/A_stage1/wood.sh
 ```
 
+![train-stage1](images/train-stage1.png)
+
 ### (B) Train and save the GMMs with the stage 1 networks
 
 ```
@@ -62,6 +64,8 @@ $ bash scripts/MVTecAD/B_stage2/carpet.sh
 $ bash scripts/MVTecAD/B_stage2/tile.sh
 $ bash scripts/MVTecAD/B_stage2/wood.sh
 ```
+
+![train-stage2](images/train-stage2.png)
 
 ### (C) Copy the GMMs as the models of source domain
 
@@ -74,6 +78,8 @@ $ bash scripts/MVTecAD/C_set/leather.sh
 ```
 $ bash scripts/MVTecAD/D_stage3/leather.sh
 ```
+
+![train-stage3](images/train-stage3.png)
 
 ### (E) Calculate AUROC with the stage 3 networks
 
