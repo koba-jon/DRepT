@@ -1,6 +1,6 @@
 # DRepT — Official PyTorch Implementation
 
-This is the official implementation of the paper **"DRepT: Anomaly Detection Based on Transfer of Defect Representation with Transmittance Mask"** in *2023 International Joint Conference on Neural Networks (IJCNN)* [1].
+This is the official implementation of the paper **"DRepT: Anomaly Detection Based on Transfer of Defect Representation with Transmittance Mask"** in *2023 International Joint Conference on Neural Networks (IJCNN)* [1] [Paper](https://ieeexplore.ieee.org/document/10191690).
 
 ![transfer-result](images/transfer.png)
 
